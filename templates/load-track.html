@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>Upload-MP3</title>
-    <link rel="stylesheet" href="{% static 'css/load-track.css' %}?=v2">
+    <link rel="stylesheet" href="{% static 'css/load-track.css' %}?=v4">
 </head>
 <body>
     <div id="loader">
@@ -14,13 +14,14 @@
             <span>MetaTune</span>
             <img src="{% static 'icon.svg' %}" alt="icon">
         </div>
-        <div id="upload-block">
+        <label for="input-file" id="upload-block">
             <input type="file" name="input-file" id="input-file" accept=".mp3,.wav" hidden>
-            <label for="input-file" id="file">
+
+            <span id="file">
                 <img src="{% static 'file.svg' %}" alt="file">
                 <span>Перетащите MP3-файл сюда</span>
-            </label>
-        </div>
+            </span>
+        </label>
         <button type="submit">Продолжить<img src="{% static 'continue.svg' %}" alt="continue"></button>
     </div>
 </body>
