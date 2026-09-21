@@ -14,7 +14,7 @@ body {
     font-family: 'Balsamiq Sans', sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 24px;
+    font-size: 18px;
     background: #000000;
     color: #ffffff;
     min-height: 100vh;
@@ -25,7 +25,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     min-height: 100vh;
 }
 
@@ -35,6 +35,7 @@ body {
     justify-content: center;
     align-items: center;
     transform: translateX(10px);
+    margin-bottom: -10px;
 }
 
 #main-text span {
@@ -53,19 +54,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#upload-block {
-    min-height: 140px;
-    min-width: 450px;
-    border: 2px dashed #ffffff;
-    border-radius: 40px;
-    transition: 0.1s ease;
+    min-height: 110px;
+    min-width: 380px;
+    border: 3px dashed #ffffff;
+    border-radius: 50px;
+    transition: 0.2s ease;
+    opacity: 0.5;
 }
 
 #upload-block:hover {
     cursor: pointer;
-    border: 4px solid #ffffff;
+    border: 3px dashed #9800FF;
+    border-radius: 60px;
+    opacity: 1;
+    min-height: 120px;
+    min-width: 390px;
 }
 
 #file {
@@ -81,6 +84,42 @@ body {
 }
 
 #file img {
-    width: 45px;
-    height: 45px;
+    width: 38px;
+    height: 38px;
+}
+
+#file span {
+    font-size: 20px;
+}
+
+#loader button {
+    border: 3px dashed #ffffff;
+    background: none;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    min-height: 40px;
+    min-width: 200px;
+    font-family: 'Balsamiq Sans', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    opacity: 0.5;
+    transition: 0.2s ease;
+}
+
+#loader button:hover {
+    cursor: pointer;
+    border: 0;
+    border-radius: 20px;
+    min-height: 40px;
+    min-width: 300px;
+    opacity: 1;
+    background: #a050eb;
+    background: linear-gradient(180deg,
+        rgba(160, 80, 235, 1) 0%,
+        rgba(134, 38, 224, 1) 100%
+    );
 }
