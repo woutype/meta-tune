@@ -95,7 +95,7 @@ body {
     font-size: 20px;
 }
 
-#loader button {
+#continue {
     border: 3px dashed #ffffff;
     background: none;
     color: #ffffff;
@@ -115,12 +115,12 @@ body {
     animation-delay: 0.4s;
 }
 
-#loader button:hover {
+#continue:hover {
     cursor: pointer;
     border: none;
     border-radius: 20px;
     min-height: 40px;
-    min-width: 320px;
+    min-width: 380px;
     opacity: 1;
     background: #a050eb;
     background: linear-gradient(180deg,
@@ -130,7 +130,7 @@ body {
     transform: translateY(-8px);
 }
 
-#loader button:active {
+#continue:active {
     cursor: pointer;
     scale: 0.94;
 }
@@ -146,3 +146,107 @@ body {
         scale: 1;
     }
 }
+
+.hidden {
+
+}
+
+#player-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 110px;
+    min-width: 380px;
+    border: 3px dashed #ffffff;
+    border-radius: 55px;
+    animation: FadeIn 1s ease-in-out backwards;
+    animation-delay: 0.2s;
+    padding-top: 18px;
+    padding-bottom: 14px;
+    transition: all 0.2s ease;
+    opacity: 0.5;
+}
+
+#player-block:hover {
+    min-height: 120px;
+    min-width: 390px;
+    opacity: 1;
+    border: 3px dashed #9800FF;
+}
+
+#track-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: -10px;
+}
+
+#cancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.5s ease;
+    opacity: 0.5;
+    border: none;
+}
+
+#cancel:hover {
+    transform: rotate(360deg);
+    scale: 1.05;
+    opacity: 1;
+}
+
+#track-name {
+    font-size: 20px;
+    transition: all 0.5s ease;
+}
+
+#track-name:hover {
+    scale: 1.05;
+}
+
+#audio {
+    width: 350px;
+    height: 42px;
+    border-radius: 25px;
+}
+
+#player-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 350px;
+}
+
+#play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.5s ease;
+    border: none;
+}
+
+#play:hover {
+    scale: 1.1;
+    transform: rotate(360deg);
+}
+
+#play img {
+    width: 108%;
+    height: 108%;
+}
+
