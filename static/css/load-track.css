@@ -120,7 +120,7 @@ body {
     border: none;
     border-radius: 20px;
     min-height: 40px;
-    min-width: 380px;
+    min-width: 370px;
     opacity: 1;
     background: #a050eb;
     background: linear-gradient(180deg,
@@ -159,7 +159,7 @@ body {
     min-height: 110px;
     min-width: 380px;
     border: 3px dashed #ffffff;
-    border-radius: 55px;
+    border-radius: 60px;
     animation: FadeIn 1s ease-in-out backwards;
     animation-delay: 0.2s;
     padding-top: 18px;
@@ -238,6 +238,7 @@ body {
     cursor: pointer;
     transition: 0.5s ease;
     border: none;
+    margin: 10px;
 }
 
 #play:hover {
@@ -250,3 +251,92 @@ body {
     height: 108%;
 }
 
+#time {
+    font-size: 18px;
+    color: #aaaaaa;
+    min-width: 32px;
+}
+
+/* liquid glass slider */
+
+.slider-container {
+    position: relative;
+    width: 168px;
+    height: 10px;
+    background: #D6D6DA;
+    border-radius: 999px;
+    margin-right: -16px;
+}
+
+.slider-progress {
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(117deg, #49a3fc 0%, #3681ee 100%);
+  border-radius: 999px;
+  width: 0;
+  z-index: 1;
+}
+
+.slider-thumb-glass {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 2;
+  background-color: #fff;
+  box-shadow: 0 1px 8px 0 rgba(0, 30, 63, 0.1), 0 0 2px 0 rgba(0, 9, 20, 0.1);
+  overflow: hidden;
+  transition: transform 0.15s ease, height 0.15s ease;
+}
+
+.slider-thumb-glass-filter {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  backdrop-filter: blur(0.6px);
+  -webkit-backdrop-filter: blur(0.6px);
+  filter: url(#mini-liquid-lens);
+}
+
+.slider-thumb-glass-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.slider-thumb-glass-specular {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow:
+    inset 1px 1px 0 rgba(69, 168, 243, 0.2),
+    inset 1px 3px 0 rgba(28, 63, 90, 0.05),
+    inset 0 0 22px rgb(255 255 255 / 60%),
+    inset -1px -1px 0 rgba(69, 168, 243, 0.12);
+}
+
+.slider-thumb-glass-filter,
+.slider-thumb-glass-overlay,
+.slider-thumb-glass-specular {
+  opacity: 0;
+}
+
+.slider-thumb-glass.active {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.slider-thumb-glass.active .slider-thumb-glass-filter,
+.slider-thumb-glass.active .slider-thumb-glass-overlay,
+.slider-thumb-glass.active .slider-thumb-glass-specular {
+  opacity: 1;
+}
+
+.slider-thumb-glass:active {
+  transform: translate(-50%, -50%) scaleY(0.98) scaleX(1.1);
+}
