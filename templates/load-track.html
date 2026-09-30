@@ -12,11 +12,38 @@
     <form method="post" id="upload-form">
         {% csrf_token %}
         <input type="file" name="track" class="hidden" id="input-place" accept=".mp3, .wav, .flac" required>
+
+        {# Accept the file #}
         <label for="input-place" id="input-label">
             <img src="{% static 'file.svg' %}" alt="file" id="icon-file">
             Choose a track
         </label>
+
+        {# Player #}
+        <div id="player-container">
+            <div id="track-info">
+                <span id="track-name">Author - Name</span>
+                <button id="delete-btn" class="play-btn">
+                    <img src="{% static 'delete.svg' %}" alt="delete" id="icon-delete">
+                </button>
+            </div>
+
+            <div id="player-controls">
+                <audio id="audio-player" class="hidden"></audio>
+
+                <button type="button" id="play-btn">
+                    <img src="{% static 'play.svg' %}" alt="play" id="icon-play">
+                </button>
+
+                <input type="range" id="slider" min="0" max="100" value="0" step="1" aria-label="slider">
+
+                <span id="duration-time">0:00</span>
+            </div>
+        </div>
+
         <button type="submit" id="continue-btn">Continue<img src="{% static 'continue.svg' %}" alt="Continue"></button>
     </form>
+
+    <script src="{% static 'js/load-track.js' %}?=v1"></script>
 </body>
 </html>

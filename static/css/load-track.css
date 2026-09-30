@@ -49,8 +49,8 @@ body {
     gap: 1px;
     cursor: pointer;
     font-size: 24px;
-    width: 220px;
-    height: 52px;
+    min-width: 220px;
+    min-height: 52px;
     border: 1px solid #ffffff;
     border-radius: 26px;
     transition: all 0.2s ease;
@@ -59,8 +59,8 @@ body {
 }
 
 #input-label:hover {
-    width: 260px;
-    height: 86px;
+    min-width: 260px;
+    min-height: 86px;
     opacity: 1;
     border: none;
     background: #8a00bd;
@@ -73,8 +73,8 @@ body {
 }
 
 #icon-file {
-    width: 20px;
-    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
 }
 
 #continue-btn {
@@ -85,8 +85,8 @@ body {
     gap: 5px;
     cursor: pointer;
     font-size: 24px;
-    width: 162px;
-    height: 40px;
+    min-width: 162px;
+    min-height: 40px;
     border-radius: 20px;
     border: 1px solid #ffffff;
     background: transparent;
@@ -102,8 +102,8 @@ body {
 
 #continue-btn:hover {
     opacity: 1;
-    width: 220px;
-    height: 42px;
+    min-width: 220px;
+    min-height: 42px;
     border: none;
     background: #8a00bd;
     background: linear-gradient(0deg, rgba(138, 0, 189, 1) 0%, rgba(207, 74, 255, 1) 100%);
@@ -136,29 +136,190 @@ body {
     }
 }
 
+#player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 262px;
+    min-height: 92px;
+    border: 1px solid #ffffff;
+    border-radius: 26px;
+    color: #ffffff;
+    margin-bottom: -10px;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    gap: 10px;
+}
+
+#player-container:hover {
+    border: none;
+    opacity: 1;
+    min-width: 260px;
+    min-height: 86px;
+    background: #8a00bd;
+    background: linear-gradient(0deg, rgba(138, 0, 189, 1) 0%, rgba(207, 74, 255, 1) 100%);
+}
+
+#track-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#icon-delete {
+    min-width: 20px;
+    min-height: 20px;
+}
+
+#track-name {
+    font-size: 24px;
+    font-family: "Clarity City", sans-serif;
+    font-weight: 400;
+}
+
+#duration-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+#player-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#play-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-right: 8px;
+    transform: translateY(1px);
+}
+
+#duration-time {
+    margin-left: 8px;
+}
+
+#slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 130px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#slider:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+#slider::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+}
+
+#slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+#slider::-moz-range-thumb:hover {
+    transform: scale(1.3);
+}
+
 @media screen and (max-width: 800px) {
     #main-text {
         font-size: 32px;
         margin-bottom: 5px;
     }
+
     #input-label {
-        width: 90vw;
-        height: 80px;
+        min-width: 90vw;
+        min-height: 80px;
         border-radius: 40px;
     }
+
     #input-label:hover {
-        width: 95vw;
-        height: 90px;
+        min-width: 95vw;
+        min-height: 90px;
         border-radius: 40px;
     }
+
     #continue-btn {
-        width: 45vw;
-        height: 52px;
+        min-width: 45vw;
+        min-height: 52px;
         border-radius: 26px;
     }
+
     #continue-btn:hover {
-        width: 90vw;
-        height: 52px;
+        min-width: 90vw;
+        min-height: 52px;
         border-radius: 31px;
+    }
+
+    #player-container {
+        min-width: 90vw;
+        min-height: 120px;
+        border-radius: 40px;
+    }
+
+    #player-container:hover {
+        min-width: 95vw;
+        min-height: 130px;
+        border-radius: 40px;
+    }
+
+    #track-info {
+        margin-top: -18px;
+        margin-bottom: 15px;
+    }
+
+    #player-controls {
+        scale: 1.3;
+        margin-bottom: -15px;
+    }
+
+    #play-btn {
+        margin-right: 5px;
+        transform: translateY(2px);
+    }
+
+    #duration-time {
+        margin-left: 10px;
     }
 }
