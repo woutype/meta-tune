@@ -67,6 +67,11 @@ body {
     background: linear-gradient(0deg, rgba(138, 0, 189, 1) 0%, rgba(207, 74, 255, 1) 100%);
 }
 
+#input-label:active {
+    opacity: 0.8;
+    scale: 0.95;
+}
+
 #icon-file {
     width: 20px;
     height: 20px;
@@ -104,6 +109,11 @@ body {
     background: linear-gradient(0deg, rgba(138, 0, 189, 1) 0%, rgba(207, 74, 255, 1) 100%);
 }
 
+#continue-btn:active {
+    opacity: 0.8;
+    scale: 0.95;
+}
+
 @keyframes FadeInButton {
     from {
         opacity: 0;
@@ -123,5 +133,32 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #main-text {
+        font-size: 32px;
+        margin-bottom: 5px;
+    }
+    #input-label {
+        width: 90vw;
+        height: 80px;
+        border-radius: 40px;
+    }
+    #input-label:hover {
+        width: 95vw;
+        height: 90px;
+        border-radius: 40px;
+    }
+    #continue-btn {
+        width: 45vw;
+        height: 52px;
+        border-radius: 26px;
+    }
+    #continue-btn:hover {
+        width: 90vw;
+        height: 52px;
+        border-radius: 31px;
     }
 }

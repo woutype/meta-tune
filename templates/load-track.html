@@ -11,7 +11,7 @@
     <h1 id="main-text">UPLOAD-YOUR-TRACK</h1>
     <form method="post" id="upload-form">
         {% csrf_token %}
-        <input type="file" name="track" class="hidden" accept=".mp3, .wav, .flac" required>
+        <input type="file" name="track" class="hidden" id="input-place" accept=".mp3, .wav, .flac" required>
         <label for="input-place" id="input-label">
             <img src="{% static 'file.svg' %}" alt="file" id="icon-file">
             Choose a track
