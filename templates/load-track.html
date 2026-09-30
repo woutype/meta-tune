@@ -23,7 +23,7 @@
         <div id="player-container" class="hidden">
             <div id="track-info">
                 <span id="track-name">Author - Name</span>
-                <button id="delete-btn" class="play-btn">
+                <button type="button" id="delete-btn" class="play-btn">
                     <img src="{% static 'delete.svg' %}" alt="delete" id="icon-delete">
                 </button>
             </div>
@@ -44,6 +44,6 @@
         <button type="submit" id="continue-btn">Continue<img src="{% static 'continue.svg' %}" alt="Continue"></button>
     </form>
 
-    <script src="{% static 'js/load-track.js' %}?=v1"></script>
+    <script src="{% static 'js/load-track.js' %}?=v2"></script>
 </body>
 </html>
