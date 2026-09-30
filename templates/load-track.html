@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload-Track</title>
-    <link rel="stylesheet" href="{% static 'css/load-track.css' %}">
+    <link rel="stylesheet" href="{% static 'css/load-track.css' %}?=v2">
 </head>
 <body>
     <h1 id="main-text">UPLOAD-YOUR-TRACK</h1>
     <form method="post" id="upload-form">
         {% csrf_token %}
-        <input type="file" name="track" id="input-place" accept=".mp3, .wav, .flac" required>
-        <label for="input-place" id="input-label"><img src="{% static 'file.svg' %}" alt="file" id="icon-file">Choose a track</label>
+        <input type="file" name="track" class="hidden" accept=".mp3, .wav, .flac" required>
+        <label for="input-place" id="input-label">
+            <img src="{% static 'file.svg' %}" alt="file" id="icon-file">
+            Choose a track
+        </label>
         <button type="submit" id="continue-btn">Continue<img src="{% static 'continue.svg' %}" alt="Continue"></button>
     </form>
 </body>

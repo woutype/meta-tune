@@ -18,10 +18,13 @@ body {
     align-items: center;
     flex-direction: column;
     gap: 10px;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 #main-text {
     font-size: 52px;
+    animation: FadeIn 0.5s ease-in-out backwards;
 }
 
 #upload-form {
@@ -30,9 +33,11 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    animation: FadeIn 0.5s ease-in-out backwards;
+    animation-delay: 0.2s;
 }
 
-#input-place {
+.hidden {
     display: none;
 }
 
@@ -49,11 +54,15 @@ body {
     border: 1px solid #ffffff;
     border-radius: 26px;
     transition: all 0.2s ease;
+    opacity: 0.5;
+    color: #ffffff;
 }
 
 #input-label:hover {
     width: 260px;
     height: 86px;
+    opacity: 1;
+    border: none;
     background: #8a00bd;
     background: linear-gradient(0deg, rgba(138, 0, 189, 1) 0%, rgba(207, 74, 255, 1) 100%);
 }
@@ -61,7 +70,6 @@ body {
 #icon-file {
     width: 20px;
     height: 20px;
-    transform: translateY(1px);
 }
 
 #continue-btn {
@@ -72,7 +80,7 @@ body {
     gap: 5px;
     cursor: pointer;
     font-size: 24px;
-    width: 146px;
+    width: 162px;
     height: 40px;
     border-radius: 20px;
     border: 1px solid #ffffff;
@@ -80,12 +88,40 @@ body {
     transition: all 0.2s ease;
     opacity: 0.5;
     margin-top: 10px;
+    color: #ffffff;
+    font-family: "Clarity City", sans-serif;
+    font-weight: 400;
+    animation: FadeInButton 0.5s ease-in-out backwards;
+    animation-delay: 0.4s;
 }
 
 #continue-btn:hover {
     opacity: 1;
     width: 220px;
     height: 42px;
+    border: none;
     background: #8a00bd;
     background: linear-gradient(0deg, rgba(138, 0, 189, 1) 0%, rgba(207, 74, 255, 1) 100%);
+}
+
+@keyframes FadeInButton {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+}
+
+@keyframes FadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
