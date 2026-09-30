@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload-Track</title>
-    <link rel="stylesheet" href="{% static 'css/load-track.css' %}?=v2">
+    <link rel="stylesheet" href="{% static 'css/load-track.css' %}?=v4">
 </head>
 <body>
     <h1 id="main-text">UPLOAD-YOUR-TRACK</h1>
@@ -20,7 +20,7 @@
         </label>
 
         {# Player #}
-        <div id="player-container">
+        <div id="player-container" class="hidden">
             <div id="track-info">
                 <span id="track-name">Author - Name</span>
                 <button id="delete-btn" class="play-btn">
