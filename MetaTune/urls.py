@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.load_track, name='load-track'),
+    path('edit-tags/', views.edit_tags, name='edit-tags'),
 ]
 
 if settings.DEBUG:

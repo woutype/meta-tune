@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Clarity+City:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: "Clarity City", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
