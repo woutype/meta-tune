@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -29,6 +30,7 @@ body {
     font-weight: 700;
     text-align: center;
     letter-spacing: 1px;
+    user-select: none;
     animation: FadeIn 0.5s ease-in-out backwards;
 }
 
@@ -62,9 +64,10 @@ body {
     padding: 0 20px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 28px;
-    transition: all 0.25s ease;
+    transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease, border-color 0.25s ease;
     opacity: 0.85;
     color: #ffffff;
+    user-select: none;
 }
 
 #input-label:hover {
@@ -83,6 +86,7 @@ body {
 #icon-file {
     width: 22px;
     height: 22px;
+    flex-shrink: 0;
 }
 
 #player-container {
@@ -92,13 +96,13 @@ body {
     justify-content: center;
     width: 100%;
     min-height: 110px;
-    padding: 18px 26px;
+    padding: 18px 24px;
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 28px;
     color: #ffffff;
     opacity: 1;
     background: rgba(255, 255, 255, 0.03);
-    transition: all 0.25s ease;
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
     gap: 14px;
 }
 
@@ -106,6 +110,7 @@ body {
     border-color: transparent;
     background: #8a00bd;
     background: linear-gradient(0deg, rgba(138, 0, 189, 1) 0%, rgba(207, 74, 255, 1) 100%);
+    transform: scaleX(1.05);
 }
 
 #track-info {
@@ -115,6 +120,7 @@ body {
     justify-content: center;
     gap: 10px;
     max-width: 100%;
+    min-width: 0;
 }
 
 #track-name {
@@ -124,6 +130,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 0;
 }
 
 #delete-btn {
@@ -134,11 +141,12 @@ body {
     background: transparent;
     cursor: pointer;
     padding: 4px;
+    flex-shrink: 0;
     transition: transform 0.3s ease;
 }
 
 #delete-btn:hover {
-    transform: scale(1.15) rotate(90deg);
+    transform: scale(1.15) rotate(15deg);
 }
 
 #delete-btn:active {
@@ -148,6 +156,7 @@ body {
 #icon-delete {
     width: 20px;
     height: 20px;
+    display: block;
 }
 
 #player-controls {
@@ -167,11 +176,13 @@ body {
     align-items: center;
     justify-content: center;
     padding: 4px;
+    flex-shrink: 0;
 }
 
 #icon-play {
     width: 24px;
     height: 24px;
+    display: block;
     transition: transform 0.2s ease;
 }
 
@@ -184,7 +195,8 @@ body {
     -moz-appearance: none;
     appearance: none;
     color-scheme: only light;
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     height: 6px;
     background: transparent;
     outline: none;
@@ -245,6 +257,9 @@ body {
 #duration-time {
     font-size: 16px;
     min-width: 38px;
+    font-variant-numeric: tabular-nums;
+    user-select: none;
+    flex-shrink: 0;
 }
 
 #continue-btn {
@@ -260,11 +275,12 @@ body {
     border-radius: 23px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background: transparent;
-    transition: all 0.25s ease;
+    transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease, border-color 0.25s ease;
     opacity: 0.85;
     margin-top: 8px;
     color: #ffffff;
     font-family: inherit;
+    user-select: none;
     animation: FadeInButton 0.5s ease-in-out backwards;
     animation-delay: 0.4s;
 }
@@ -310,35 +326,11 @@ body {
         margin-bottom: 8px;
     }
 
-    #upload-form {
-        max-width: 320px;
-    }
-
     #player-container {
         padding: 16px 18px;
-        min-height: 100px;
-        border-radius: 24px;
-        gap: 12px;
-    }
-
-    #track-name {
-        font-size: 18px;
-        max-width: 200px;
     }
 
     #slider {
-        width: 140px;
-    }
-
-    #input-label {
-        max-width: 100%;
-        min-height: 52px;
-        font-size: 18px;
-    }
-
-    #continue-btn {
-        min-width: 160px;
-        min-height: 44px;
-        font-size: 17px;
+        max-width: 150px;
     }
 }
