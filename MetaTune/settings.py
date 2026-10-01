@@ -130,6 +130,6 @@ MAILERS = {
     },
 }
 
-MEDIA_URL = '/temp/'
-MEDIA_ROOT = BASE_DIR / 'temp/'
+MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_URL = '/media/'
 

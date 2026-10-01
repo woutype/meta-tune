@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1 id="main-text">UPLOAD-YOUR-TRACK</h1>
-    <form method="post" id="upload-form">
+    <form method="post" id="upload-form" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="track" class="hidden" id="input-place" accept=".mp3, .wav, .flac" required>
 
