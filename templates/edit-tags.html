@@ -14,7 +14,7 @@
     <form method="post" id="tags-container" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <div id="cover-container">
+        <div id="cover-container" style="{% if cover_image %}background-image: url('{{ cover_image }}'); {% endif %}">
             <input type="file" name="cover" id="cover-input" accept="image/jpeg, image/png" class="hidden">
             <label for="cover-input" id="cover-label">
                 <img src="{% static 'edit.svg' %}" alt="cover" id="cover">
