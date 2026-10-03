@@ -1,0 +1,31 @@
+{% load static %}
+{# Background #}
+<div id="background" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+{# Messages from the server #}
+<div id="toast-area" role="status" aria-live="polite" data-success-icon="{% static 'check.svg' %}" data-error-icon="{% static 'alert-circle.svg' %}">
+    {% for message in messages %}
+        <div class="toast {{ message.tags }}">
+            <span class="toast-icon">
+                {% if message.tags == 'success' %}
+                    <img src="{% static 'check.svg' %}" alt="">
+                {% else %}
+                    <img src="{% static 'alert-circle.svg' %}" alt="">
+                {% endif %}
+            </span>
+            <span>{{ message }}</span>
+        </div>
+    {% endfor %}
+</div>
+
+{# Top bar #}
+<header id="topbar">
+    <a href="{% url 'load-track' %}" id="brand" aria-label="MetaTune">
+        <span id="brand-icon"><img src="{% static 'music.svg' %}" alt=""></span>
+        MetaTune
+    </a>
+</header>

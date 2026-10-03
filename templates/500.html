@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MetaTune - Server error</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=8">
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 14px; }
+        .error-code { font-size: clamp(80px, 22vw, 150px); font-weight: 800; line-height: 1; background: linear-gradient(135deg, #8a00bd, #cf4aff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: FadeIn 0.7s var(--ease) backwards; }
+        .error-text { color: var(--text-muted); max-width: 360px; animation: FadeIn 0.7s var(--ease) 0.1s backwards; }
+        .btn { margin-top: 10px; animation: FadeIn 0.7s var(--ease) 0.2s backwards; }
+    </style>
+</head>
+<body>
+    <div id="background" aria-hidden="true"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+    <div class="error-code">500</div>
+    <p class="error-text">Something went wrong on our side. Please try again in a moment.</p>
+    <a href="/" class="btn btn-primary">Back to MetaTune</a>
+</body>
+</html>

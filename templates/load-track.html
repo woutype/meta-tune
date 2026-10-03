@@ -3,48 +3,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload-Track</title>
-    <link rel="stylesheet" href="{% static 'css/load-track.css' %}?=v6">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?=v6">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#07050d">
+    <title>MetaTune - Upload track</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=9">
+    <link rel="stylesheet" href="{% static 'css/load-track.css' %}?v=9">
 </head>
 <body>
-    <h1 id="main-text">UPLOAD-YOUR-TRACK</h1>
-    <form method="post" id="upload-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="track" class="hidden" id="input-place" accept=".mp3, .wav, .flac" required>
+    {% include 'partials/header.html' %}
 
-        {# Accept the file #}
-        <label for="input-place" id="input-label">
-            <img src="{% static 'file.svg' %}" alt="file" id="icon-file">
-            Choose a track
-        </label>
+    <main id="page">
+        <h1 id="main-text">UPLOAD-YOUR-TRACK</h1>
+        <p id="sub-text">Edit the tags, cover and lyrics of your music in a few clicks</p>
 
-        {# Player #}
-        <div id="player-container" class="hidden">
-            <div id="track-info">
-                <span id="track-name">Author - Name</span>
-                <button type="button" id="delete-btn" class="play-btn">
-                    <img src="{% static 'delete.svg' %}" alt="delete" id="icon-delete">
-                </button>
+        <form method="post" id="upload-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="track" class="hidden" id="input-place" accept=".mp3, .wav, .flac" required>
+
+            {# Accept the file #}
+            <label for="input-place" id="input-label" class="spotlight">
+                <span id="drop-icon"><img src="{% static 'file.svg' %}" alt="file" id="icon-file"></span>
+                <span id="drop-title">Choose a track</span>
+                <span id="drop-text">or drag and drop it here</span>
+                <span id="formats"><span>MP3</span><span>WAV</span><span>FLAC</span></span>
+            </label>
+
+            {# Player #}
+            <div id="player-container" class="hidden spotlight">
+                <div id="track-info">
+                    <div id="equalizer" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                    <div id="track-text">
+                        <span id="track-name">Author - Name</span>
+                        <span id="track-meta">MP3 · 0 MB</span>
+                    </div>
+                    <button type="button" id="delete-btn" aria-label="Remove the track">
+                        <img src="{% static 'delete.svg' %}" alt="delete" id="icon-delete">
+                    </button>
+                </div>
+
+                <div id="player-controls">
+                    <audio id="audio-player" class="hidden"></audio>
+
+                    <button type="button" id="play-btn" aria-label="Play or pause">
+                        <img src="{% static 'play.svg' %}" alt="play" id="icon-play">
+                    </button>
+
+                    <input type="range" id="slider" min="0" max="100" value="0" step="any" aria-label="slider">
+
+                    <span id="time-text"><span id="current-time">0:00</span> / <span id="total-time">0:00</span></span>
+                </div>
             </div>
 
-            <div id="player-controls">
-                <audio id="audio-player" class="hidden"></audio>
+            <button type="submit" id="continue-btn" class="btn btn-primary" disabled>
+                <span id="continue-text">Continue</span>
+                <img src="{% static 'continue.svg' %}" alt="">
+            </button>
+        </form>
 
-                <button type="button" id="play-btn">
-                    <img src="{% static 'play.svg' %}" alt="play" id="icon-play">
-                </button>
+        {# How it works #}
+        <ol id="steps">
+            <li><span>1</span>Upload</li>
+            <li><span>2</span>Edit tags</li>
+            <li><span>3</span>Download</li>
+        </ol>
+    </main>
 
-                <input type="range" id="slider" min="0" max="100" value="0" step="1" aria-label="slider">
+    {# Visitors counter #}
+    <div id="visitors" data-url="{% url 'visitors' %}">
+        <img src="{% static 'users.svg' %}" alt="">
+        <span id="visitors-count" class="loading">0</span>
+        <span>visitors</span>
+    </div>
 
-                <span id="duration-time">0:00</span>
-            </div>
-        </div>
-
-        <button type="submit" id="continue-btn">Continue<img src="{% static 'continue.svg' %}" alt="Continue"></button>
-    </form>
-
-    <script src="{% static 'js/load-track.js' %}?=v3"></script>
+    <script src="{% static 'js/common.js' %}?v=9"></script>
+    <script src="{% static 'js/load-track.js' %}?v=9"></script>
 </body>
 </html>

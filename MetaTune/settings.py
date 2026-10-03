@@ -10,10 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load the secrets from the .env file
+load_dotenv(BASE_DIR / '.env', override=True)
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^daq(($auy5x#_2=c7fk$swsh%_8zfqxf2=)0b789xt*gwqpm&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '').split(',') if host.strip()]
 
 
 # Application definition
@@ -105,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = os.getenv('TIME_ZONE', 'UTC')
 
 USE_I18N = True
 
@@ -133,3 +139,30 @@ MAILERS = {
 MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = '/media/'
 
+# Supabase (PostgreSQL) - used only for the visitors counter
+SUPABASE_DB_URL = os.getenv('SUPABASE_DB_URL', '')
+
+# Telegram bot
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
+TELEGRAM_ADMIN_ID = os.getenv('TELEGRAM_ADMIN_ID', '')
+
+# The session is kept in a signed cookie, so no database table is needed (no "django_session" errors)
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
+# Friendly page instead of the ugly "CSRF verification failed" error
+CSRF_FAILURE_VIEW = 'editor.views.csrf_failed'
+
+# Messages about problems are shown in the console where runserver is started
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {'format': '[{levelname}] {name}: {message}', 'style': '{'},
+    },
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler', 'formatter': 'simple'},
+    },
+    'loggers': {
+        'editor': {'handlers': ['console'], 'level': 'INFO'},
+    },
+}

@@ -3,50 +3,158 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit-Tags</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
-    <link rel="stylesheet" href="{% static 'css/edit-tags.css' %}?v=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#07050d">
+    <title>MetaTune - Edit tags</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=9">
+    <link rel="stylesheet" href="{% static 'css/edit-tags.css' %}?v=9">
 </head>
 <body>
-    <h1 id="main-text">EDIT-TAGS</h1>
+    {% include 'partials/header.html' %}
 
-    <form method="post" id="tags-container" enctype="multipart/form-data">
-        {% csrf_token %}
+    <main id="page">
+        <h1 id="main-text">EDIT-TAGS</h1>
 
-        {# Cover #}
-        <div id="cover-container" style="{% if cover_image %}background-image: url('{{ cover_image }}'); {% endif %}">
-            <input type="file" name="cover" id="cover-input" accept="image/jpeg, image/png" class="hidden">
-            <label for="cover-input" id="cover-label">
-                <img src="{% static 'edit.svg' %}" alt="cover" id="cover">
-            </label>
-        </div>
+        <form method="post" id="tags-container" enctype="multipart/form-data" data-changed="{% if form_changed %}1{% endif %}" data-filename="{{ filename }}">
+            {% csrf_token %}
+            <input type="hidden" name="remove_cover" id="remove-cover" value="0">
 
-        {# Track name #}
-        <div class="input-group">
-            <label for="track-title" class="input-title">Track name</label>
-            <input type="text" name="title" id="track-title" class="form-input" placeholder="Enter the track name" autocomplete="off">
-        </div>
+            <aside id="cover-side">
+                {# Cover #}
+                <div id="cover-wrap" class="{% if cover_image %}has-cover{% endif %}" style="{% if cover_image %}--cover: url('{{ cover_image }}');{% endif %}">
+                    <div id="cover-container">
+                        <div id="cover-placeholder">
+                            <img src="{% static 'music.svg' %}" alt="">
+                            <span>No cover yet</span>
+                        </div>
+                        <input type="file" name="cover" id="cover-input" accept="image/jpeg, image/png" class="hidden">
+                        <label for="cover-input" id="cover-label">
+                            <img src="{% static 'edit.svg' %}" alt="cover" id="cover">
+                            <span>Change cover</span>
+                        </label>
+                    </div>
+                </div>
 
-        {# Artist #}
-        <div class="input-group">
-            <label for="track-artist" class="input-title">Artist</label>
-            <input type="text" name="artist" id="track-artist" class="form-input" placeholder="Enter artist name" autocomplete="off">
-        </div>
-    
-        {# Album #}
-        <div class="input-group">
-            <label for="track-album" class="input-title">Album</label>
-            <input type="text" name="album" id="track-album" class="form-input" placeholder="Enter album name" autocomplete="off">
-        </div>
-    
-        {# Lyrics #}
-        <div class="input-group">
-            <label for="track-lyrics" class="input-title">Lyrics</label>
-            <textarea name="lyrics" id="track-lyrics" class="form-textarea" placeholder="Enter track lyrics..." autocomplete="off"></textarea>
-        </div>
+                <button type="button" id="remove-cover-btn" class="btn btn-ghost">
+                    <img src="{% static 'delete.svg' %}" alt="">
+                    Remove cover
+                </button>
 
-    </form>
+                {# File info #}
+                <div id="file-card" class="spotlight">
+                    <span id="file-name" title="{{ filename }}">{{ filename }}</span>
+                    <div id="file-chips">
+                        <span>{{ info.format }}</span>
+                        <span>{{ info.duration }}</span>
+                        {% if info.bitrate %}<span>{{ info.bitrate }} kbps</span>{% endif %}
+                        <span>{{ info.size }} MB</span>
+                    </div>
+                </div>
+            </aside>
 
+            <section id="fields-side" class="spotlight">
+                <span id="unsaved-hint">Unsaved changes</span>
+
+                <div id="fields-grid">
+                    {# Track name #}
+                    <div class="input-group full">
+                        <div class="label-row">
+                            <label for="track-title" class="input-title">Track name</label>
+                            <button type="button" id="fill-name-btn" class="text-btn hidden">Fill from file name</button>
+                        </div>
+                        <input type="text" name="title" id="track-title" class="form-input" value="{{ fields.title }}" placeholder="Enter the track name" maxlength="200" autocomplete="off">
+                    </div>
+
+                    {# Artist #}
+                    <div class="input-group half">
+                        <label for="track-artist" class="input-title">Artist</label>
+                        <input type="text" name="artist" id="track-artist" class="form-input" value="{{ fields.artist }}" placeholder="Enter artist name" maxlength="200" autocomplete="off">
+                    </div>
+
+                    {# Album #}
+                    <div class="input-group half">
+                        <label for="track-album" class="input-title">Album</label>
+                        <input type="text" name="album" id="track-album" class="form-input" value="{{ fields.album }}" placeholder="Enter album name" maxlength="200" autocomplete="off">
+                    </div>
+
+                    {# Album artist #}
+                    <div class="input-group half">
+                        <label for="track-album-artist" class="input-title">Album artist</label>
+                        <input type="text" name="album_artist" id="track-album-artist" class="form-input" value="{{ fields.album_artist }}" placeholder="Who made the album" maxlength="200" autocomplete="off">
+                    </div>
+
+                    {# Composer #}
+                    <div class="input-group half">
+                        <label for="track-composer" class="input-title">Composer</label>
+                        <input type="text" name="composer" id="track-composer" class="form-input" value="{{ fields.composer }}" placeholder="Who wrote the music" maxlength="200" autocomplete="off">
+                    </div>
+
+                    {# Genre #}
+                    <div class="input-group genre">
+                        <label for="track-genre" class="input-title">Genre</label>
+                        <div class="combo" id="genre-combo">
+                            <input type="text" name="genre" id="track-genre" class="form-input" value="{{ fields.genre }}" placeholder="Pick or type" maxlength="100" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="genre-menu">
+                            <button type="button" id="genre-toggle" class="combo-toggle" aria-label="Show genres" tabindex="-1"></button>
+                            <ul id="genre-menu" class="combo-menu" role="listbox">
+                                {% for genre in genres %}<li class="combo-option" role="option" data-genre="{{ genre }}">{{ genre }}</li>{% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    {# Year #}
+                    <div class="input-group small">
+                        <label for="track-year" class="input-title">Year</label>
+                        <input type="text" name="year" id="track-year" class="form-input" value="{{ fields.year }}" placeholder="2024" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" autocomplete="off">
+                    </div>
+
+                    {# Track number #}
+                    <div class="input-group small">
+                        <label for="track-number" class="input-title">Track №</label>
+                        <input type="text" name="track" id="track-number" class="form-input" value="{{ fields.track }}" placeholder="1/12" maxlength="7" inputmode="numeric" pattern="[0-9]{1,3}(/[0-9]{1,3})?" autocomplete="off">
+                    </div>
+
+                    {# Quick genres #}
+                    <div class="input-group full" id="genre-chips">
+                        {% for genre in genres|slice:":8" %}<button type="button" class="chip" data-genre="{{ genre }}">{{ genre }}</button>{% endfor %}
+                    </div>
+
+                    {# Comment #}
+                    <div class="input-group full">
+                        <label for="track-comment" class="input-title">Comment</label>
+                        <input type="text" name="comment" id="track-comment" class="form-input" value="{{ fields.comment }}" placeholder="Anything you want to remember" maxlength="500" autocomplete="off">
+                    </div>
+
+                    {# Lyrics #}
+                    <div class="input-group full">
+                        <div class="label-row">
+                            <label for="track-lyrics" class="input-title">Lyrics</label>
+                            <span id="lyrics-count">0 characters</span>
+                        </div>
+                        <textarea name="lyrics" id="track-lyrics" class="form-textarea" placeholder="Enter track lyrics..." autocomplete="off">{{ fields.lyrics }}</textarea>
+                    </div>
+                </div>
+            </section>
+
+            {# Buttons #}
+            <div id="action-bar">
+                <a href="{% url 'load-track' %}" id="back-btn" class="btn btn-ghost" aria-label="Upload another track">
+                    <img src="{% static 'back.svg' %}" alt="">
+                    <span>New track</span>
+                </a>
+                <a href="{% url 'download' %}" id="download-btn" class="btn btn-ghost" aria-label="Download the track">
+                    <img src="{% static 'download.svg' %}" alt="">
+                    <span>Download</span>
+                </a>
+                <button type="submit" id="save-btn" class="btn btn-primary" disabled>
+                    <img src="{% static 'device-floppy.svg' %}" alt="">
+                    <span id="save-text">Save tags</span>
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script src="{% static 'js/common.js' %}?v=9"></script>
+    <script src="{% static 'js/edit-tags.js' %}?v=9"></script>
 </body>
 </html>
